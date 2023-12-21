@@ -1,20 +1,21 @@
 //Libraries
 #include<iostream>
 #include<iomanip>
-#include<cctype>
-#include<algorithm>
 #include<ctime>
 #include<string>
 #include<stdlib.h> 
-
 using namespace std;
 
+
 //Global Variables
-int option1, option2, option3, option4;
+int a,option1, option2, option4;
+char option3;
 char bmenu = 'e';
 string sname1, sname2, sname3, reg;
 string blood, emgc, dob, room, dname3, dname2, dname1;
 string course_arr[6];
+void selection();
+
 
 //Repeat Functions 
 string addstrings(string sname1, string sname2)
@@ -48,21 +49,35 @@ void declare()
 	cout << "\n\n";
 }
 
+
 //Main Callout Functions
 void registration()
 {
-	cout << "Please Enter Your Father's First Name" << endl;
+	cout << setw(19) << "" << setw(23) << "LMS PORTAL REGISTRATION" << setw(19) << "" << endl;
+	cout << setfill('=') << setw(73) << "" << setfill(' ') << endl << endl << endl;
+	cout << setw(8) << "" << setw(14) << "Father's First Name : ";
 	cin >> dname1;
-	cout << "Please Enter Your Father's Last Name" << endl;
+	cout << "\n";
+
+	cout << setw(8) << "" << setw(14) << "Father's Last Name : ";
 	cin >> dname2;
-	cout << "Please Enter Your Date Of Birth e.g day/month/year (29/2/04) " << endl;
+	cout << "\n";
+
+	cout << setw(8) << "" << setw(14) << "Date Of Birth      : ";
 	cin >> dob;
-	cout << "Please Enter Your Blood Group e.g B+" << endl;
+	cout << "\n";
+
+	cout << setw(8) << "" << setw(14) << "Blood Group e.g B+ : ";
 	cin >> blood;
-	cout << "Please Enter Your Emergency Contact" << endl;
+	cout << "\n";
+
+	cout << setw(8) << "" << setw(14) << "Emergency Contact  : ";
 	cin >> emgc;
-	cout << "Please Enter You Hostel Room Number e.g hostel 11 room b-54 as (H-11/B-54)" << endl;
+	cout << "\n";
+
+	cout << setw(8) << "" << setw(14) << "Hostel Room Number : ";
 	cin >> room;
+	cout << "\n";
 
 	dname3 = addstrings(dname1, dname2);
 	system("cls");
@@ -123,12 +138,11 @@ void personal_info()
 	backtomenu();
 }
 
+
 //billing history
 void billingsemester()
 {
 	double semesterbill;// semester 
-
-	srand(time(0));
 	semesterbill = 400000;
 
 	cout << setw(31) << "" << "|------------|------------|" << endl;
@@ -146,11 +160,11 @@ void billingsemester()
 void billingmess()
 {
 	double messbill;
-
-	srand(time(0));
 	double fine;
+	srand(time(0));
+	
 	messbill = (rand() % 15000);
-	fine = (rand() % 50000);
+	fine = (rand() % 800);
 	cout << setw(25) << "" << "|------------|------------|" << endl;
 	cout << setw(25) << "" << "|Reg No      | " << setw(11) << reg << "|" << endl;
 	cout << setw(25) << "" << "|------------|------------|" << endl;
@@ -293,11 +307,11 @@ void semesterchoice()
 	int semester;
 	cout << "Billing History : " << endl;
 	cout << setw(18) << "" << "Select Semester : " << endl;
-	cout << setw(36) << "" << right << "|---------------|" << endl;
-	cout << setw(36) << "" << right << "|1. Semester 1  |" << endl;
-	cout << setw(36) << "" << right << "|---------------|" << endl;
-	cout << setw(36) << "" << right << "|1. Semester 2  |" << endl;
-	cout << setw(36) << "" << right << "|---------------|" << endl;
+	cout << setw(36) << "" << right << "|--------------------|" << endl;
+	cout << setw(36) << "" << right << "|1. FALL SEMESTER    |" << endl;
+	cout << setw(36) << "" << right << "|--------------------|" << endl;
+	cout << setw(36) << "" << right << "|2. SPRING SEMESTER  |" << endl;
+	cout << setw(36) << "" << right << "|--------------------|" << endl;
 	cout << setfill('=') << setw(155) << "" << setfill(' ') << endl;
 	cout << "Select Semester : ";
 	cin >> semester;
@@ -307,20 +321,20 @@ void semesterchoice()
 	case 1:
 		declare();
 		cout << "Billing History : " << endl;
-		cout << setw(18) << "" << "Semester 1 : " << endl;
+		cout << setw(18) << "" << "FALL SEMESTER : " << endl;
 		billingsemester();
 		break;
 	case 2:
 		declare();
 		cout << "Billing History : " << endl;
-		cout << setw(18) << "" << "Semester 2 : " << endl;
+		cout << setw(18) << "" << "SPRING SEMESTER : " << endl;
 		billingsemester();
 		break;
 	}
 }
 void billingcall()
 {
-	int a;
+
 	cout << "Billing History : " << endl;
 	cout << setw(18) << "" << "|-------------|" << endl;
 	cout << setw(18) << "" << "| 1.Mess      |" << endl;
@@ -329,9 +343,10 @@ void billingcall()
 	cout << setw(18) << "" << "|-------------|\n" << endl;
 	cout << setfill('=') << setw(155) << "" << setfill(' ') << endl;
 	cout << "Select Option : ";
-	cin >> option3;
+	cin >> option4;
 
 }
+
 
 //subject related
 void quizmarks()
@@ -365,6 +380,8 @@ void quizmarks()
 	{
 		cout << "Your Score For Quiz Is Below Average " << endl;
 	}
+	backtomenu();
+	selection();
 }
 void quiznum()
 {
@@ -391,49 +408,38 @@ void quiznum()
 	switch (b)
 	{
 	case 1:
+		declare();
 		cout << setw(12) << "" << right << "Quiz-1  \n\n";
+		quizmarks();
 		break;
 	case 2:
+		declare();
 		cout << setw(12) << "" << right << "Quiz-2  \n\n";
+		quizmarks();
 		break;
 	case 3:
+		declare();
 		cout << setw(12) << "" << right << "Quiz-3  \n\n";
+		quizmarks();
 		break;
 	case 4:
+		declare();
 		cout << setw(12) << "" << right << "Quiz-4  \n\n";
+		quizmarks();
 		break;
 	case 5:
+		declare();
 		cout << setw(12) << "" << right << "Quiz-5  \n\n";
-		break;
-	}
-
-
-	switch (b)
-	{
-	case 1:
-		quizmarks();
-		break;
-	case 2:
-		quizmarks();
-		break;
-	case 3:
-		quizmarks();
-		break;
-	case 4:
-		quizmarks();
-		break;
-	case 5:
 		quizmarks();
 		break;
 	}
-
 
 }
 void mids()
 {
 
 	double totalmarks = 35;//total marks
-	double marksobtained;// randon num of absents generated
+	double marksobtained;// random num of absents generated
 	double c_avearge;//class average
 
 	srand(time(0));
@@ -461,14 +467,14 @@ void mids()
 	{
 		cout << "**LOL! Try Again Next Year" << endl;
 	}
-
-
+	backtomenu();
+	selection();
 }
 void final()
 {
 
 	double totalmarks = 35;//total marks
-	double marksobtained;// randon num of absents generated
+	double marksobtained;// random num of absents generated
 	double c_avearge;//class average
 
 	srand(time(0));
@@ -497,7 +503,8 @@ void final()
 	{
 		cout << "**LOL! Try Again Next Year" << endl;
 	}
-
+	backtomenu();
+	selection();
 }
 void marks()
 {
@@ -518,25 +525,18 @@ void marks()
 	switch (mark)
 	{
 	case 1:
+		declare();
 		cout << setw(12) << "" << right << "Quiz  \n\n";
-		break;
-	case 2:
-		cout << setw(12) << "" << right << "Mids  \n\n";
-		break;
-	case 3:
-		cout << setw(12) << "" << right << "Finals  \n\n";
-		break;
-	}
-
-	switch (mark)
-	{
-	case 1:
 		quiznum();
 		break;
 	case 2:
+		declare();
+		cout << setw(12) << "" << right << "Mids  \n\n";
 		mids();
 		break;
 	case 3:
+		declare();
+		cout << setw(12) << "" << right << "Finals  \n\n";
 		final();
 		break;
 	}
@@ -544,7 +544,7 @@ void marks()
 void attendance()
 {
 	double tclasses = 42;//total classes
-	double cmissed;// randon num of absents generated
+	double cmissed;// random num of absents generated
 	double classes_attended;
 	double attendence;
 
@@ -562,7 +562,7 @@ void attendance()
 	cout << setw(11) << "" << setw(53) << right << "|-------------------------|-------------------------|" << endl;
 	cout << setw(11) << "" << setw(27) << "|Missed Classes           |" << setw(25) << left << cmissed << "|" << endl;
 	cout << setw(11) << "" << setw(53) << right << "|-------------------------|-------------------------|" << endl;
-	cout << setw(11) << "" << setw(27) << "|Attendence percentage    |" << setw(25) << left << attendence << "%" << "|" << endl;
+	cout << setw(11) << "" << setw(27) << "|Attendance percentage    |" << setw(25) << left << attendence << "%" << "|" << endl;
 	cout << setw(11) << "" << setw(53) << right << "|-------------------------|-------------------------|" << endl;
 	cout << endl;
 	cout << setfill('=') << setw(155) << "" << setfill(' ') << endl;
@@ -570,29 +570,28 @@ void attendance()
 
 	if (attendence <= 80)
 	{
-		cout << "Please Die As Your Attendance Is Below 80% " << endl;
+		cout << "Please Try Again As Your Attendance Is Below 80% " << endl;
 
 	}
 	else
 	{
 		cout << "You Can Sit For The Finals :)" << endl;
 	}
-
+	backtomenu();
+	selection();
 
 }
 void assignments()
 {
 	double tassignments = 42;//total classes
-	double assignmentsmissed;// randon num of absents generated
+	double assignmentsmissed;// random num of absents generated
 	double assignmentsgiven;
 	double assignment;
 
 	srand(time(0));
 
 	assignmentsgiven = 35 + (rand() % 7);
-
 	assignmentsmissed = tassignments - assignmentsgiven;
-
 	assignment = ((assignmentsgiven / tassignments) * 100);
 
 	cout << setw(11) << "" << setw(53) << right << "|-------------------------|-------------------------|" << endl;
@@ -606,6 +605,8 @@ void assignments()
 	cout << setw(11) << "" << setw(53) << right << "|-------------------------|-------------------------|" << endl;
 	cout << endl;
 	cout << setfill('=') << setw(155) << "" << setfill(' ') << endl;
+	backtomenu();
+	selection();
 }
 void sub()
 {
@@ -615,7 +616,7 @@ void sub()
 	cout << setw(11) << "" << right << "|-------------------------|" << endl;
 	cout << setw(11) << "" << right << "|2.Assignments            |" << endl;
 	cout << setw(11) << "" << right << "|-------------------------|" << endl;
-	cout << setw(11) << "" << right << "|3.Attendence             |" << endl;
+	cout << setw(11) << "" << right << "|3.Attendance             |" << endl;
 	cout << setw(11) << "" << right << "|-------------------------|" << endl;
 	cout << endl;
 	cout << setfill('=') << setw(155) << "" << setfill(' ') << endl;
@@ -626,26 +627,18 @@ void sub()
 	switch (marksorassignment)
 	{
 	case 1:
+		declare();
 		cout << setw(11) << "" << right << "Marks  \n\n";
-		break;
-	case 2:
-		cout << setw(11) << "" << right << "Assignments  \n\n";
-		break;
-	case 3:
-		cout << setw(11) << "" << right << "Attendence  \n\n";
-		break;
-	}
-
-
-	switch (marksorassignment)
-	{
-	case 1:
 		marks();
 		break;
 	case 2:
+		declare();
+		cout << setw(11) << "" << right << "Assignments  \n\n";
 		assignments();
 		break;
 	case 3:
+		declare();
+		cout << setw(11) << "" << right << "Attendance  \n\n";
 		attendance();
 		break;
 	}
@@ -685,78 +678,64 @@ void subjectcall()
 	switch (a)
 	{
 	case 1:
+		declare();
 		cout << setw(12) << "" << right << "PH101 \n\n";
+		sub();
 		break;
 	case 2:
+		declare();
 		cout << setw(12) << "" << right << "PH101-LAB \n\n";
+		sub();
 		break;
 	case 3:
+		declare();
 		cout << setw(12) << "" << right << "CH101 \n\n";
+		sub();
 		break;
 	case 4:
+		declare();
 		cout << setw(12) << "" << right << "CH101-LAB \n\n";
+		sub();
 		break;
 	case 5:
+		declare();
 		cout << setw(12) << "" << right << "CS101 \n\n";
+		sub();
 		break;
 	case 6:
+		declare();
 		cout << setw(12) << "" << right << "CS101-101 \n\n";
+		sub();
 		break;
 	case 7:
+		declare();
 		cout << setw(12) << "" << right << "HM101 \n\n";
+		sub();
 		break;
 	case 8:
+		declare();
 		cout << setw(12) << "" << right << "HM101-LAB \n\n";
+		sub();
 		break;
 	case 9:
+		declare();
 		cout << setw(12) << "" << right << "CH161 \n\n";
+		sub();
 		break;
 	case 10:
+		declare();
 		cout << setw(12) << "" << right << "IF101 \n\n";
+		sub();
 		break;
 	case 11:
+		declare();
 		cout << setw(12) << "" << right << "MT101 \n\n";
-		break;
-	}
-
-	switch (a)
-	{
-	case 1:
-		sub();
-		break;
-	case 2:
-		sub();
-		break;
-	case 3:
-		sub();
-		break;
-	case 4:
-		sub();
-		break;
-	case 5:
-		sub();
-		break;
-	case 6:
-		sub();
-		break;
-	case 7:
-		sub();
-		break;
-	case 8:
-		sub();
-		break;
-	case 9:
-		sub();
-		break;
-	case 10:
-		sub();
-		break;
-	case 11:
 		sub();
 		break;
 	}
 
 }
+
 
 //timetable
 void timetable()
@@ -792,9 +771,11 @@ void timetable()
 	backtomenu();
 
 }
+
+
+//courses
 void sem2_edit()
 {
-
 	cout << "Enter N/A If Course Not Decided Yet." << endl;
 
 	for (int i = 0; i < 6; i++)
@@ -823,7 +804,6 @@ void sem2_courses()
 	cout << setw(25) << "" << setw(53) << right << "|-------------------------|-------------------------|" << endl;
 	cout << "\n";
 	cout << setfill('=') << setw(155) << "" << setfill(' ') << endl << endl;
-	//	backtomenu();
 }
 void sem1_courses()
 {
@@ -893,6 +873,7 @@ void displayUniversityEvents()
 	displayEvents(events, sizeof(events) / sizeof(events[0]));
 }
 
+
 //annual schedule
 struct Event2
 {
@@ -952,6 +933,7 @@ void displayUniversitySchedule()
 
 	displaySchedule(events2, sizeof(events2) / sizeof(events2[0]));
 }
+
 
 //menu selection
 void selection()
@@ -1013,20 +995,25 @@ void selection()
 		case 2:
 			declare();
 			sem2_courses();
-			cout << "Press 0 To Edit All Registered Courses : ";
+			cout << "Press Q To Edit All Registered Courses Or E To Exit : ";
 			cin >> option3;
 			cout << "\n\n";
-			if (option3 == 0)
-			{
-				sem2_edit();
-			}
-			declare();
-			sem2_courses();
-			backtomenu();
-			selection();
+				if (option3 == 'Q')
+				{
+					sem2_edit();
+					declare();
+					sem2_courses();
+					backtomenu();
+					selection();
+				}
+				if (option3 == 'E')
+				{
+					selection();
+				}
 			break;
 		}
 		break;
+
 	case 4:
 		declare();
 		cout << "Subjects : \n" << endl;
@@ -1035,7 +1022,7 @@ void selection()
 	case 5:
 		declare();
 		billingcall();
-		switch (option3)
+		switch (option4)
 		{
 		case 1:
 			declare();
@@ -1073,13 +1060,9 @@ void selection()
 //Main Function
 int main()
 {
-	/*registration();*/
+	registration();
 
 	login();
-
-	declare();
-
-	menu();
 
 	selection();
 
